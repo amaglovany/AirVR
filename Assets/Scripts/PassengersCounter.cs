@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassengersCounter : MonoBehaviour {
+public static class PassengersCounter
+{
+    private static int counter;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static int Counter
+    {
+        get { return counter; } 
+        set
+        {
+            counter = value;
+            GameplayUI.Instance.UpdateCounterText();
+        }
+    }
 }

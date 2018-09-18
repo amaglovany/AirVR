@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PassengersGenerator : MonoBehaviour
@@ -14,37 +15,40 @@ public class PassengersGenerator : MonoBehaviour
     private void Start()
     {
         GeneratePassengersSpawnTransforms();
-
         GeneratePassengersQueue(defaultPassengerPrefab);
-        //MoveToPlayer();
-    }
 
-    private Vector3 velocity = Vector3.zero;
+        StartCoroutine(MoveToPlayerRoutine());
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Other condition
+        if (Input.GetKeyDown(KeyCode.Space) && playerCanPass)
         {
-            //MoveToPlayer();
-            foreach (var passenger in passengersOnScreen)
-            {
-                passenger.GetComponent<Animator>().Play("PassengerMoveAnimation");
-            }
+            PassengersCounter.Counter++;
+            StartCoroutine(MoveToPlayerRoutine());
         }
     }
 
-    private void MoveToPlayer()
+    public bool playerCanPass;
+
+    private IEnumerator MoveToPlayerRoutine()
     {
+        Destroy(passengersOnScreen[0]);
+        passengersOnScreen.RemoveAt(0);
+
         foreach (var passenger in passengersOnScreen)
         {
-            //passenger.transform.Translate(new Vector3(0f, 0f, 2.5f));
-            passenger.transform.position = Vector3.SmoothDamp(passenger.transform.position,
-                new Vector3(passenger.transform.position.x, passenger.transform.position.y,
-                    passenger.transform.position.z + 2.5f), ref velocity, .3f);
+            passenger.GetComponent<Animator>().Play("PassengerMoveAnimation");
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        var newPassenger = Instantiate(defaultPassengerPrefab, gameObject.transform);
+        newPassenger.transform.position = passengersSpawnPointsPositions[passengersSpawnPointsPositions.Count - 1];
+        passengersOnScreen.Add(newPassenger);
     }
 
-    #region Generating and Spawning
+    #region Starting Generating and Spawning
 
     [SerializeField] private int maxPassengersOnScreenCount = 10;
     [SerializeField] private List<GameObject> passengersOnScreen;
@@ -65,7 +69,7 @@ public class PassengersGenerator : MonoBehaviour
     private void GeneratePassengersSpawnTransforms()
     {
         firstPassengerPosition = new Vector3(playerTransform.position.x,
-            defaultPassengerPrefab.transform.position.y, playerTransform.position.z - 5);
+            defaultPassengerPrefab.transform.position.y, playerTransform.position.z - 2.5f);
 
         passengersSpawnPointsPositions.Add(firstPassengerPosition);
 
@@ -74,7 +78,7 @@ public class PassengersGenerator : MonoBehaviour
             int last = passengersSpawnPointsPositions.Count - 1;
 
             passengersSpawnPointsPositions.Add(new Vector3(passengersSpawnPointsPositions[last].x,
-                passengersSpawnPointsPositions[last].y, passengersSpawnPointsPositions[last].z - 2));
+                passengersSpawnPointsPositions[last].y, passengersSpawnPointsPositions[last].z - 2.5f));
         }
     }
 
