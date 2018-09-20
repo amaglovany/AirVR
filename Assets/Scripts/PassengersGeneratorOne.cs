@@ -1,16 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PassengersGenerator : MonoBehaviour
+public class PassengersGeneratorOne : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
 
     [SerializeField] private GameObject defaultPassengerPrefab;
-    [SerializeField] private GameObject coatPassengerPrefab;
-    [SerializeField] private GameObject itemsPassengerPrefab;
-    [SerializeField] private GameObject ultimatePassengerPrefab;
 
     private void Start()
     {
@@ -22,14 +20,15 @@ public class PassengersGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerCanPass)
+        if (Input.GetKeyDown(KeyCode.Space) && playerCanConfirm)
         {
+            // "Everything Okay" Logic
             PassengersCounter.Counter++;
             StartCoroutine(MoveToPlayerRoutine());
         }
     }
 
-    public bool playerCanPass;
+    public bool playerCanConfirm;
 
     private IEnumerator MoveToPlayerRoutine()
     {
@@ -41,7 +40,7 @@ public class PassengersGenerator : MonoBehaviour
             passenger.GetComponent<Animator>().Play("PassengerMoveAnimation");
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         var newPassenger = Instantiate(defaultPassengerPrefab, gameObject.transform);
         newPassenger.transform.position = passengersSpawnPointsPositions[passengersSpawnPointsPositions.Count - 1];

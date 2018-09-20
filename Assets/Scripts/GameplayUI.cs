@@ -24,18 +24,18 @@ public class GameplayUI : MonoBehaviour
     {
         counterText.text = "Count: " + PassengersCounter.Counter;
     }
-    
+
     public void DisplayMessage(string messageText)
     {
         hintText.text = messageText;
     }
-    
+
     public void DisplayMessage(string messageText, float fontSize)
     {
         hintText.text = messageText;
         hintText.fontSize = fontSize;
     }
-    
+
     public void DisplayMessage(string messageText, float fontSize, Color32 textColor)
     {
         hintText.text = messageText;

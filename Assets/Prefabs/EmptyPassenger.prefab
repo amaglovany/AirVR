@@ -22,10 +22,8 @@ GameObject:
   - component: {fileID: 33899907057408454}
   - component: {fileID: 23152470606707242}
   - component: {fileID: 65148278541712184}
-  - component: {fileID: 95560917017934800}
-  - component: {fileID: 114666046535194436}
   m_Layer: 0
-  m_Name: DefaultPassenger
+  m_Name: EmptyPassenger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,33 +96,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95560917017934800
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1408250762182230}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ba5874af1392564cbb529c5181ae32a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114666046535194436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1408250762182230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb55dfa858099c49bf5b51e1184afa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _passengersGeneratorOne: {fileID: 0}

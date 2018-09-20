@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class PlayerControlHandler : MonoBehaviour
 {
-    [SerializeField] private PassengersGenerator _passengersGenerator;
+    [SerializeField] private PassengersGeneratorOne _passengersGeneratorOne;
 
     private void Awake()
     {
-        _passengersGenerator = gameObject.transform.parent.gameObject.GetComponent<PassengersGenerator>();
+        _passengersGeneratorOne = gameObject.transform.parent.gameObject.GetComponent<PassengersGeneratorOne>();
     }
 
     private void EnablePlayerControl()
     {
-        _passengersGenerator.playerCanPass = true;
+        _passengersGeneratorOne.playerCanConfirm = true;
         GameplayUI.Instance.DisplayMessage("Press \"SPACE\" to confirm the passenger", 26f, Color.white);
     }
 
     private void DisablePlayerControl()
     {
-        _passengersGenerator.playerCanPass = false;
+        _passengersGeneratorOne.playerCanConfirm = false;
         GameplayUI.Instance.DisplayMessage(string.Empty);
     }
 }

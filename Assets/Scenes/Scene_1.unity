@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1074462553}
   - component: {fileID: 1074462554}
   m_Layer: 0
-  m_Name: '[PassengersGenerator]'
+  m_Name: '[PassengersGeneratorOne]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -529,10 +529,7 @@ MonoBehaviour:
   playerTransform: {fileID: 497508347}
   defaultPassengerPrefab: {fileID: 1408250762182230, guid: 5708bd95a0e2fcf4396437dfab94236b,
     type: 2}
-  coatPassengerPrefab: {fileID: 0}
-  itemsPassengerPrefab: {fileID: 0}
-  ultimatePassengerPrefab: {fileID: 0}
-  playerCanPass: 0
+  playerCanConfirm: 0
   maxPassengersOnScreenCount: 10
   passengersOnScreen: []
   passengersSpawnPointsPositions: []
@@ -813,7 +810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.z
