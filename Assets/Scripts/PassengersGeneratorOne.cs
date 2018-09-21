@@ -6,9 +6,20 @@ using UnityEngine;
 
 public class PassengersGeneratorOne : MonoBehaviour
 {
+    #region Singleton
+
+    public static PassengersGeneratorOne Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+
     [SerializeField] private Transform playerTransform;
 
-    [SerializeField] private GameObject defaultPassengerPrefab;
+    public GameObject defaultPassengerPrefab;
 
     private void Start()
     {

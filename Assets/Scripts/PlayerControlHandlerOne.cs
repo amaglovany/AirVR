@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControlHandler : MonoBehaviour
+public class PlayerControlHandlerOne : MonoBehaviour
 {
     [SerializeField] private PassengersGeneratorOne _passengersGeneratorOne;
 

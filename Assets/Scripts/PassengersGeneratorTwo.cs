@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PassengersGeneratorTwo : MonoBehaviour
 {
+    #region Singleton
+
+    public static PassengersGeneratorTwo Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+
     [SerializeField] private Transform playerTransform;
 
-    [SerializeField] private GameObject emptyPassengerPrefab;
-    [SerializeField] private GameObject coatPassengerPrefab;
-    [SerializeField] private GameObject itemsPassengerPrefab;
-    [SerializeField] private GameObject itemsAndCoatPassengerPrefab;
+    public GameObject emptyPassengerPrefab;
+    public GameObject coatPassengerPrefab;
+    public GameObject itemsPassengerPrefab;
+    public GameObject itemsAndCoatPassengerPrefab;
 
     private void Start()
     {
@@ -49,6 +60,11 @@ public class PassengersGeneratorTwo : MonoBehaviour
         passengersOnScreen.Add(newPassenger);
     }
 
+    public GameObject ReturnFirstPassenger()
+    {
+        return passengersOnScreen[0];
+    }
+
     #region Starting Generating and Spawning
 
     [SerializeField] private int maxPassengersOnScreenCount = 10;
@@ -74,7 +90,7 @@ public class PassengersGeneratorTwo : MonoBehaviour
         GameObject passengerGO = null;
 
         int localSeed = 0;
-        
+
         // To prevent same prefabs in queue (Higher variety)
         do
         {

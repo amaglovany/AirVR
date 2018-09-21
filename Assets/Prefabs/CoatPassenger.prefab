@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23864077346466768}
   - component: {fileID: 65553500669197318}
   - component: {fileID: 95722365255506250}
+  - component: {fileID: 114426970017064800}
   m_Layer: 0
   m_Name: CoatPassenger
   m_TagString: Untagged
@@ -115,3 +116,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114426970017064800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520521736836648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1450e5833124cdd489f15a323682c965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: 1
