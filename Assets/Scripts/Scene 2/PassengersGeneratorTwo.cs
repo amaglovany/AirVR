@@ -42,7 +42,7 @@ public class PassengersGeneratorTwo : MonoBehaviour
 
     public bool playerCanConfirm;
 
-    private IEnumerator MoveToPlayerRoutine()
+    public IEnumerator MoveToPlayerRoutine()
     {
         Destroy(passengersOnScreen[0]);
         passengersOnScreen.RemoveAt(0);

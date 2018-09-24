@@ -20,6 +20,8 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hintText;
     [SerializeField] private TextMeshProUGUI counterText;
 
+    [SerializeField] private TextMeshProUGUI gatesStatusText;
+
     public void UpdateCounterText()
     {
         counterText.text = "Count: " + PassengersCounter.Counter;
@@ -41,5 +43,13 @@ public class GameplayUI : MonoBehaviour
         hintText.text = messageText;
         hintText.fontSize = fontSize;
         hintText.color = textColor;
+    }
+
+    public void DisplayGatesMessage(string messageText)
+    {
+        if (gatesStatusText != null)
+        {
+            gatesStatusText.text = messageText;
+        }
     }
 }
