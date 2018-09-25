@@ -23,6 +23,7 @@ public class Basket : MonoBehaviour
 
     [SerializeField] private CharacterController playerController;
     [SerializeField] private BoxCollider gatesCheckTrigger;
+    [SerializeField] private BoxCollider tableStabilizerCollider;
     [SerializeField] private Vector3 defaultBasketPosition;
     [SerializeField] private List<string> contentList;
 
@@ -39,25 +40,17 @@ public class Basket : MonoBehaviour
     public bool isTaken;
     public bool beenChecked;
 
-    private void Update()
-    {
-        if (isTaken)
-        {
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other == gatesCheckTrigger && !beenChecked)
         {
             GameplayUI.Instance.DisplayGatesMessage("Success!");
-            GameplayUI.Instance.DisplayMessage("Success! Put the Basket on the desk, and check next passenger.", 26, Color.green);
+            GameplayUI.Instance.DisplayMessage("Success! Put the Basket on the desk, and check next passenger.", 26,
+                Color.green);
             beenChecked = true;
             PassengersCounter.Counter++;
         }
     }
-
-    [SerializeField] private BoxCollider tableStabilizerCollider;
 
     private void OnCollisionStay(Collision other)
     {

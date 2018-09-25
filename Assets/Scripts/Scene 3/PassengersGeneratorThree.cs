@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassengersGeneratorTwo : MonoBehaviour
+public class PassengersGeneratorThree : MonoBehaviour
 {
     #region Singleton
 
-    public static PassengersGeneratorTwo Instance;
+    public static PassengersGeneratorThree Instance;
 
     private void Awake()
     {
@@ -17,10 +17,12 @@ public class PassengersGeneratorTwo : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
 
-    public GameObject emptyPassengerPrefab;
-    public GameObject coatPassengerPrefab;
-    public GameObject itemsPassengerPrefab;
-    public GameObject itemsAndCoatPassengerPrefab;
+    public GameObject scanPassengerPrefab;
+
+    [SerializeField] private Material redMaterial;
+    [SerializeField] private Material blueMaterial;
+    [SerializeField] private Material greenMaterial;
+    [SerializeField] private Material yellowMaterial;
 
     private void Start()
     {
@@ -37,12 +39,12 @@ public class PassengersGeneratorTwo : MonoBehaviour
 
         foreach (var passenger in passengersOnScreen)
         {
-            passenger.GetComponent<Animator>().Play("RandomPassengerMoveAnimation");
+            passenger.GetComponent<Animator>().Play("ScanPassengerMoveAnimation");
         }
 
         yield return new WaitForSeconds(1f);
 
-        var newPassenger = Instantiate(RandomPassenger(), gameObject.transform);
+        var newPassenger = Instantiate(PassengerWithRandomMaterial(), gameObject.transform);
         newPassenger.transform.position = passengersSpawnPointsPositions[passengersSpawnPointsPositions.Count - 1];
         passengersOnScreen.Add(newPassenger);
     }
@@ -63,7 +65,7 @@ public class PassengersGeneratorTwo : MonoBehaviour
     {
         for (int i = 0; i < maxPassengersOnScreenCount; i++)
         {
-            var addedPassenger = Instantiate(RandomPassenger(), gameObject.transform);
+            var addedPassenger = Instantiate(PassengerWithRandomMaterial(), gameObject.transform);
 
             addedPassenger.transform.position = passengersSpawnPointsPositions[i];
             passengersOnScreen.Add(addedPassenger);
@@ -72,28 +74,33 @@ public class PassengersGeneratorTwo : MonoBehaviour
 
     private int globalSeed = 0;
 
-    private GameObject RandomPassenger()
+    private GameObject PassengerWithRandomMaterial()
     {
-        GameObject passengerGO = null;
+        GameObject passengerGO = scanPassengerPrefab;
+        Material appliedMaterial = null;
 
         int localSeed = 0;
 
         // To prevent same prefabs in queue (Higher variety)
         do
         {
-            switch (Random.Range(1, 4))
+            switch (Random.Range(1, 5))
             {
                 case 1:
-                    passengerGO = coatPassengerPrefab;
+                    appliedMaterial = redMaterial;
                     localSeed = 1;
                     break;
                 case 2:
-                    passengerGO = itemsPassengerPrefab;
+                    appliedMaterial = blueMaterial;
                     localSeed = 2;
                     break;
                 case 3:
-                    passengerGO = itemsAndCoatPassengerPrefab;
+                    appliedMaterial = greenMaterial;
                     localSeed = 3;
+                    break;
+                case 4:
+                    appliedMaterial = yellowMaterial;
+                    localSeed = 4;
                     break;
                 default:
                     Debug.Log("Check random generated numbers");
@@ -102,6 +109,10 @@ public class PassengersGeneratorTwo : MonoBehaviour
         } while (localSeed == globalSeed);
 
         globalSeed = localSeed;
+        if (appliedMaterial != null)
+        {
+            passengerGO.GetComponent<MeshRenderer>().material = appliedMaterial;
+        }
 
         return passengerGO;
     }
@@ -109,7 +120,7 @@ public class PassengersGeneratorTwo : MonoBehaviour
     private void GeneratePassengersSpawnTransforms()
     {
         firstPassengerPosition = new Vector3(playerTransform.position.x,
-            emptyPassengerPrefab.transform.position.y, playerTransform.position.z - 3f);
+            scanPassengerPrefab.transform.position.y, playerTransform.position.z - 2f);
 
         passengersSpawnPointsPositions.Add(firstPassengerPosition);
 
