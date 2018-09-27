@@ -45,7 +45,7 @@ public class PlayerControlHandlerThree : MonoBehaviour
 
                     pickedObject = hit.transform;
                     distance = Vector3.Distance(pickedObject.position, Camera.main.transform.position);
-                    if (distance > 2.2F)
+                    if (distance > 2.5F)
                     {
                         pickedObject = null;
                         Basket.Instance.isTaken = false;

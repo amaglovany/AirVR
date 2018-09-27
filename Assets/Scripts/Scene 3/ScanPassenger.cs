@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ScanPassenger : MonoBehaviour
 {
-    [SerializeField] private BoxCollider[] checkColliders;
+    [SerializeField] private List<BoxCollider> scanColliders;
 
     private void Start()
     {
-        SetCheckColliders();
     }
 
-    public void SetCheckColliders()
+    public void DisableScanColliders()
     {
+        foreach (var collider in scanColliders)
+        {
+            collider.gameObject.SetActive(false);
+        }
     }
 
     private bool IsFirstInQueue()
@@ -21,10 +24,30 @@ public class ScanPassenger : MonoBehaviour
     }
 
 
-    private void PutEverythingIntoBasket()
+    private void EnableScanCollidersOnFirst()
     {
         if (IsFirstInQueue())
         {
+            foreach (var collider in scanColliders)
+            {
+                collider.gameObject.SetActive(true);
+            }
         }
+    }
+
+    public void DeleteColliderFromList(BoxCollider boxCollider)
+    {
+        foreach (var collider in scanColliders)
+        {
+            if (collider == boxCollider)
+            {
+                scanColliders.Remove(collider);
+            }
+        }
+    }
+
+    public bool IsLast()
+    {
+        return true;
     }
 }

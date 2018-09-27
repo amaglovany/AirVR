@@ -120,7 +120,7 @@ public class PassengersGeneratorThree : MonoBehaviour
     private void GeneratePassengersSpawnTransforms()
     {
         firstPassengerPosition = new Vector3(playerTransform.position.x,
-            scanPassengerPrefab.transform.position.y, playerTransform.position.z - 2f);
+            scanPassengerPrefab.transform.position.y, playerTransform.position.z - 1.6f);
 
         passengersSpawnPointsPositions.Add(firstPassengerPosition);
 
