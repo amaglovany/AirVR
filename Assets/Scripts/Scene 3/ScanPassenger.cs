@@ -32,22 +32,38 @@ public class ScanPassenger : MonoBehaviour
             {
                 collider.gameObject.SetActive(true);
             }
+
+            if (!Scanner.Instance.isTaken)
+            {
+                GameplayUI.Instance.DisplayMessage("Take the Scanner from the table on the right.", 26,
+                    Color.cyan);
+            }
+            else
+            {
+                GameplayUI.Instance.DisplayMessage("Scan the passenger in front.", 26,
+                    Color.yellow);
+            }
+
+            GameplayUI.Instance.DisplayGatesMessage("Waiting...");
         }
     }
 
     public void DeleteColliderFromList(BoxCollider boxCollider)
     {
-        foreach (var collider in scanColliders)
-        {
-            if (collider == boxCollider)
-            {
-                scanColliders.Remove(collider);
-            }
-        }
+        scanColliders.RemoveAt(scanColliders.IndexOf(boxCollider));
     }
 
-    public bool IsLast()
+    public bool IsNoColliders()
     {
-        return true;
+        int countInList = 0;
+        foreach (var collider in scanColliders)
+        {
+            if (collider != null)
+            {
+                countInList++;
+            }
+        }
+
+        return countInList == 0;
     }
 }

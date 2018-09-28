@@ -57,8 +57,11 @@ public class PlayerControlHandlerTwo : MonoBehaviour
                     distance = 1F;
                     pickedObject.GetComponent<Rigidbody>().useGravity = false;
                     Basket.Instance.isTaken = true;
-                    GameplayUI.Instance.DisplayMessage("Check the Basket through the Gate", 26,
-                        Color.yellow);
+                    if (!Basket.Instance.beenChecked)
+                    {
+                        GameplayUI.Instance.DisplayMessage("Check the Basket through the Gate", 26,
+                            Color.yellow);
+                    }
                 }
             }
             else

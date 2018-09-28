@@ -42,11 +42,13 @@ public class PassengersGeneratorThree : MonoBehaviour
             passenger.GetComponent<Animator>().Play("ScanPassengerMoveAnimation");
         }
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         var newPassenger = Instantiate(PassengerWithRandomMaterial(), gameObject.transform);
         newPassenger.transform.position = passengersSpawnPointsPositions[passengersSpawnPointsPositions.Count - 1];
         passengersOnScreen.Add(newPassenger);
+
+        yield break;
     }
 
     public GameObject ReturnFirstPassenger()
@@ -120,7 +122,7 @@ public class PassengersGeneratorThree : MonoBehaviour
     private void GeneratePassengersSpawnTransforms()
     {
         firstPassengerPosition = new Vector3(playerTransform.position.x,
-            scanPassengerPrefab.transform.position.y, playerTransform.position.z - 1.6f);
+            scanPassengerPrefab.transform.position.y, playerTransform.position.z - 1.7f);
 
         passengersSpawnPointsPositions.Add(firstPassengerPosition);
 

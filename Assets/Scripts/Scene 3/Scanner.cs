@@ -13,6 +13,7 @@ public class Scanner : MonoBehaviour
         Instance = this;
 
         defaultScannerPosition = gameObject.transform.position;
+        defaultScannerRotation = gameObject.transform.rotation;
         foreach (var collider in GetComponentsInChildren<BoxCollider>())
         {
             Physics.IgnoreCollision(playerController, collider);
@@ -24,14 +25,32 @@ public class Scanner : MonoBehaviour
     [SerializeField] private CharacterController playerController;
     [SerializeField] private BoxCollider tableStabilizerCollider;
     [SerializeField] private Vector3 defaultScannerPosition;
+    [SerializeField] private Quaternion defaultScannerRotation;
 
     public bool isTaken;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
+        if (other.collider == tableStabilizerCollider)
+        {
+            if (!isTaken)
+            {
+                GameplayUI.Instance.DisplayMessage("Take the Scanner from the table on the right.", 26,
+                    Color.cyan);
+            }
+        }
     }
-
+    
     private void OnCollisionStay(Collision other)
     {
+        if (other.collider == tableStabilizerCollider)
+        {
+            if (!isTaken)
+            {
+                // Reset
+                gameObject.transform.position = defaultScannerPosition;
+                gameObject.transform.rotation = defaultScannerRotation;
+            }
+        }
     }
 }

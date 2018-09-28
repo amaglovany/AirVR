@@ -57,8 +57,8 @@ public class PlayerControlHandlerThree : MonoBehaviour
                     pickedObject.GetComponent<Rigidbody>().useGravity = false;
                     Scanner.Instance.isTaken = true;
                     // ToDO: x=-45 rotation
-                    //Scanner.Instance.gameObject.transform.rotation = new Quaternion(-45f, 0f, 0f, 0f);
-                    GameplayUI.Instance.DisplayMessage("Check the Basket through the Gate", 26,
+                    Scanner.Instance.gameObject.transform.rotation = Quaternion.Euler(-45f, 0f, 0f);
+                    GameplayUI.Instance.DisplayMessage("Scan the passenger in front", 26,
                         Color.yellow);
                 }
             }
