@@ -23,7 +23,6 @@ public class ScanPassenger : MonoBehaviour
         return gameObject == PassengersGeneratorThree.Instance.ReturnFirstPassenger();
     }
 
-
     private void EnableScanCollidersOnFirst()
     {
         if (IsFirstInQueue())
