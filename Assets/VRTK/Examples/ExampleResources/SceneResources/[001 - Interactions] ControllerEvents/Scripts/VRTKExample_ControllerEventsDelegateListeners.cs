@@ -16,13 +16,9 @@
 
         public VRTK_ControllerEvents controllerEvents;
 
-        [Header("Quick Select")]
+        [Header("Quick Select")] public EventQuickSelect quickSelect = EventQuickSelect.All;
 
-        public EventQuickSelect quickSelect = EventQuickSelect.All;
-
-        [Header("Button Events Debug")]
-
-        public bool triggerButtonEvents = true;
+        [Header("Button Events Debug")] public bool triggerButtonEvents = true;
         public bool gripButtonEvents = true;
         public bool touchpadButtonEvents = true;
         public bool touchpadTwoButtonEvents = true;
@@ -30,16 +26,12 @@
         public bool buttonTwoButtonEvents = true;
         public bool startMenuButtonEvents = true;
 
-        [Header("Axis Events Debug")]
-
-        public bool triggerAxisEvents = true;
+        [Header("Axis Events Debug")] public bool triggerAxisEvents = true;
         public bool gripAxisEvents = true;
         public bool touchpadAxisEvents = true;
         public bool touchpadTwoAxisEvents = true;
 
-        [Header("Sense Axis Events Debug")]
-
-        public bool triggerSenseAxisEvents = true;
+        [Header("Sense Axis Events Debug")] public bool triggerSenseAxisEvents = true;
         public bool touchpadSenseAxisEvents = true;
         public bool middleFingerSenseAxisEvents = true;
         public bool ringFingerSenseAxisEvents = true;
@@ -50,7 +42,9 @@
             controllerEvents = (controllerEvents == null ? GetComponent<VRTK_ControllerEvents>() : controllerEvents);
             if (controllerEvents == null)
             {
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_ControllerEvents_ListenerExample", "VRTK_ControllerEvents", "the same"));
+                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(
+                    VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT,
+                    "VRTK_ControllerEvents_ListenerExample", "VRTK_ControllerEvents", "the same"));
                 return;
             }
 
@@ -280,7 +274,10 @@
         private void DebugLogger(uint index, string button, string action, ControllerInteractionEventArgs e)
         {
             string debugString = "Controller on index '" + index + "' " + button + " has been " + action
-                                 + " with a pressure of " + e.buttonPressure + " / Primary Touchpad axis at: " + e.touchpadAxis + " (" + e.touchpadAngle + " degrees)" + " / Secondary Touchpad axis at: " + e.touchpadTwoAxis + " (" + e.touchpadTwoAngle + " degrees)";
+                                 + " with a pressure of " + e.buttonPressure + " / Primary Touchpad axis at: " +
+                                 e.touchpadAxis + " (" + e.touchpadAngle + " degrees)" +
+                                 " / Secondary Touchpad axis at: " + e.touchpadTwoAxis + " (" + e.touchpadTwoAngle +
+                                 " degrees)";
             VRTK_Logger.Info(debugString);
         }
 
@@ -305,6 +302,8 @@
             if (triggerButtonEvents)
             {
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "touched", e);
+
+                PassengersGeneratorOne.Instance.GoNext();
             }
         }
 
@@ -320,7 +319,8 @@
         {
             if (triggerButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "hairline start", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "hairline start",
+                    e);
             }
         }
 
@@ -360,7 +360,8 @@
         {
             if (triggerSenseAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "sense axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER",
+                    "sense axis changed", e);
             }
         }
 
@@ -440,7 +441,8 @@
         {
             if (touchpadButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD", "pressed down", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD", "pressed down",
+                    e);
             }
         }
 
@@ -472,7 +474,8 @@
         {
             if (touchpadAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD", "axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD", "axis changed",
+                    e);
             }
         }
 
@@ -480,7 +483,8 @@
         {
             if (touchpadTwoButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "pressed down", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "pressed down",
+                    e);
             }
         }
 
@@ -504,7 +508,8 @@
         {
             if (touchpadTwoButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "untouched", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "untouched",
+                    e);
             }
         }
 
@@ -512,7 +517,8 @@
         {
             if (touchpadTwoAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPADTWO", "axis changed",
+                    e);
             }
         }
 
@@ -520,7 +526,8 @@
         {
             if (touchpadSenseAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD", "sense axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TOUCHPAD",
+                    "sense axis changed", e);
             }
         }
 
@@ -528,7 +535,8 @@
         {
             if (buttonOneButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "pressed down", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "pressed down",
+                    e);
             }
         }
 
@@ -560,7 +568,8 @@
         {
             if (buttonTwoButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON TWO", "pressed down", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON TWO", "pressed down",
+                    e);
             }
         }
 
@@ -592,7 +601,8 @@
         {
             if (startMenuButtonEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "START MENU", "pressed down", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "START MENU", "pressed down",
+                    e);
             }
         }
 
@@ -611,19 +621,22 @@
 
         private void DoControllerDisabled(object sender, ControllerInteractionEventArgs e)
         {
-            DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "CONTROLLER STATE", "DISABLED", e);
+            DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "CONTROLLER STATE", "DISABLED",
+                e);
         }
 
         private void DoControllerIndexChanged(object sender, ControllerInteractionEventArgs e)
         {
-            DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "CONTROLLER STATE", "INDEX CHANGED", e);
+            DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "CONTROLLER STATE",
+                "INDEX CHANGED", e);
         }
 
         private void DoMiddleFingerSenseAxisChanged(object sender, ControllerInteractionEventArgs e)
         {
             if (middleFingerSenseAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "MIDDLE FINGER", "sense axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "MIDDLE FINGER",
+                    "sense axis changed", e);
             }
         }
 
@@ -631,7 +644,8 @@
         {
             if (ringFingerSenseAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "RING FINGER", "sense axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "RING FINGER",
+                    "sense axis changed", e);
             }
         }
 
@@ -639,7 +653,8 @@
         {
             if (pinkyFingerSenseAxisEvents)
             {
-                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "PINKY FINGER", "sense axis changed", e);
+                DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "PINKY FINGER",
+                    "sense axis changed", e);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using VRTK;
 
 public class PassengersGeneratorOne : MonoBehaviour
 {
@@ -29,9 +30,9 @@ public class PassengersGeneratorOne : MonoBehaviour
         StartCoroutine(MoveToPlayerRoutine());
     }
 
-    private void Update()
+    public void GoNext()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerCanConfirm)
+        if (playerCanConfirm)
         {
             // "Everything Okay" Logic
             PassengersCounter.Counter++;
@@ -41,7 +42,7 @@ public class PassengersGeneratorOne : MonoBehaviour
 
     public bool playerCanConfirm;
 
-    private IEnumerator MoveToPlayerRoutine()
+    public IEnumerator MoveToPlayerRoutine()
     {
         Destroy(passengersOnScreen[0]);
         passengersOnScreen.RemoveAt(0);

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
+using VRTK.Controllables;
+using VRTK.Examples;
 
 public class PlayerControlHandlerOne : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class PlayerControlHandlerOne : MonoBehaviour
     private void EnablePlayerControl()
     {
         _passengersGeneratorOne.playerCanConfirm = true;
-        GameplayUI.Instance.DisplayMessage("Press \"SPACE\" to confirm the passenger", 26f, Color.white);
+        GameplayUI.Instance.DisplayMessage("Press any Trigger to confirm the passenger", 0.2f, Color.white);
     }
 
     private void DisablePlayerControl()
