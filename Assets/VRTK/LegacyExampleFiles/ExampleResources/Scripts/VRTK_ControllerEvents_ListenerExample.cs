@@ -42,7 +42,7 @@
         public bool ringFingerSenseAxisEvents = true;
         public bool pinkyFingerSenseAxisEvents = true;
 
-        public VRTK_ControllerEvents controllerEvents;
+        private VRTK_ControllerEvents controllerEvents;
 
         private void OnEnable()
         {

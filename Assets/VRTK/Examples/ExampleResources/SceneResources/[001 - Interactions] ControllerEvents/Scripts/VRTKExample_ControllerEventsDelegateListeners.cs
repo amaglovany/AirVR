@@ -303,7 +303,10 @@
             {
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "touched", e);
 
-                PassengersGeneratorOne.Instance.GoNext();
+                if (PassengersGeneratorOne.Instance != null)
+                {
+                    PassengersGeneratorOne.Instance.GoNext();
+                }
             }
         }
 
